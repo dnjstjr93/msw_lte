@@ -240,6 +240,7 @@ function parseDataMission(topic, str_message) {
 
         var topic_arr = topic.split('/');
         var data_topic = '/Mobius/' + config.gcs + '/Mission_Data/' + config.drone + '/' + config.name + '/' + topic_arr[topic_arr.length-1];
+        console.log('Data topic:', data_topic);
         msw_mqtt_client.publish(data_topic + config.sortie_name, str_message);
     }
     catch (e) {
