@@ -39,13 +39,12 @@ catch (e) {
     config.drone = 'FC_MUV_01';
     config.lib = [];
 }
-console.log('config: ', config);
+
 // library 추가
 var add_lib = {};
 try {
     add_lib = JSON.parse(fs.readFileSync('./lib_sparrow_lte.json', 'utf8'));
     config.lib.push(add_lib);
-    console.log('try- add_lib:\n', add_lib);
 }
 catch (e) {
     add_lib = {
@@ -57,7 +56,6 @@ catch (e) {
         control: ['Res_LTE']
     };
     config.lib.push(add_lib);
-    console.log('catch- add_lib:\n', add_lib);
 }
 
 // msw가 muv로 부터 트리거를 받는 용도
@@ -240,7 +238,8 @@ function parseDataMission(topic, str_message) {
 
         var topic_arr = topic.split('/');
         var data_topic = '/Mobius/' + config.gcs + '/Mission_Data/' + config.drone + '/' + config.name + '/' + topic_arr[topic_arr.length-1];
-        msw_mqtt_client.publish(data_topic + config.sortie_name, str_message);
+        // msw_mqtt_client.publish(data_topic + config.sortie_name, str_message);
+        msw_mqtt_client.publish(data_topic, str_message);
     }
     catch (e) {
         console.log('[parseDataMission] data format of lib is not json');
