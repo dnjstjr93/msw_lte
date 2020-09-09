@@ -27,7 +27,7 @@ config.name = my_msw_name;
 
 try {
     config.directory_name = msw_directory[my_msw_name];
-    config.sortie = '/' + my_sortie_name;
+    config.sortie_name = '/' + my_sortie_name;
     config.gcs = drone_info.gcs;
     config.drone = drone_info.drone;
     config.lib = [];
