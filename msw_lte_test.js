@@ -27,7 +27,7 @@ config.name = my_msw_name;
 
 try {
     config.directory_name = msw_directory[my_msw_name];
-    config.sortie = '/' + my_sortie_name;
+    config.sortie_name = '/' + my_sortie_name;
     config.gcs = drone_info.gcs;
     config.drone = drone_info.drone;
     config.lib = [];
@@ -240,7 +240,7 @@ function parseDataMission(topic, str_message) {
 
         var topic_arr = topic.split('/');
         var data_topic = '/Mobius/' + config.gcs + '/Mission_Data/' + config.drone + '/' + config.name + '/' + topic_arr[topic_arr.length-1];
-        console.log('\nDataMission Topic: ', data_topic + config.sortie_name);
+        console.log('\nDataMission Topic: ', config.sortie_name);
         msw_mqtt_client.publish(data_topic + config.sortie_name, str_message);
     }
     catch (e) {
