@@ -23,6 +23,8 @@ var my_msw_name = 'msw_lte';
 var fc = {};
 var config = {};
 
+global.my_lte_type = 'KT';
+
 config.name = my_msw_name;
 
 try {
@@ -50,25 +52,31 @@ catch (e) {
     add_lib = {
         name: 'lib_sparrow_lte',
         target: 'armv6',
+        lte: 'KT',
         description: "[name] [portnum] [baudrate]",
         scripts: './lib_sparrow_lte /dev/ttyUSB1 115200',
         data: ['LTE'],
-        control: ['Res_LTE']
+        control: ['Res_lte']
     };
     config.lib.push(add_lib);
 }
-
 // msw가 muv로 부터 트리거를 받는 용도
 // 명세에 sub_container 로 표기
 var msw_sub_muv_topic = [];
 
 var msw_sub_fc_topic = [];
-msw_sub_fc_topic.push('/Mobius/' + config.gcs + '/Drone_Data/' + config.drone + '/heartbeat');
-msw_sub_fc_topic.push('/Mobius/' + config.gcs + '/Drone_Data/' + config.drone + '/global_position_int');
-msw_sub_fc_topic.push('/Mobius/' + config.gcs + '/Drone_Data/' + config.drone + '/attitude');
-msw_sub_fc_topic.push('/Mobius/' + config.gcs + '/Drone_Data/' + config.drone + '/battery_status');
+// msw_sub_fc_topic.push('/Mobius/' + config.gcs + '/Drone_Data/' + config.drone + '/heartbeat');
+// msw_sub_fc_topic.push('/Mobius/' + config.gcs + '/Drone_Data/' + config.drone + '/global_position_int');
+// msw_sub_fc_topic.push('/Mobius/' + config.gcs + '/Drone_Data/' + config.drone + '/attitude');
+// msw_sub_fc_topic.push('/Mobius/' + config.gcs + '/Drone_Data/' + config.drone + '/battery_status');
 
 var msw_sub_lib_topic = [];
+if(config.lib[0].hasOwnProperty("lte")) {
+    my_lte_type = config.lib[0].lte;
+}
+else {
+    my_lte_type = 'KT';
+}
 
 function init() {
     if(config.lib.length > 0) {
@@ -110,7 +118,8 @@ function runLib(obj_lib) {
             scripts_arr[0] = './' + config.directory_name + '/' + scripts_arr[0];
         }
 
-        var run_lib = spawn(scripts_arr[0], scripts_arr.slice(1));
+        // var run_lib = spawn(scripts_arr[0], scripts_arr.slice(1), my_lte_type);
+        var run_lib = spawn('./lib_sparrow_lte.py', scripts_arr.slice(1), my_lte_type);
 
         run_lib.stdout.on('data', function(data) {
             console.log('stdout: ' + data);
@@ -132,7 +141,7 @@ function runLib(obj_lib) {
         console.log(e.message);
     }
 }
-
+/*
 var msw_mqtt_client = null;
 
 msw_mqtt_connect('localhost', 1883);
@@ -271,3 +280,4 @@ function parseFcData(topic, str_message) {
     // }
     ///////////////////////////////////////////////////////////////////////
 }
+*/

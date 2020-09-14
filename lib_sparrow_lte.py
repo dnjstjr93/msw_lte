@@ -54,14 +54,14 @@ def msw_mqtt_connect(broker_ip, port):
     return lib_mqtt_client
 
 
-def missionPortOpening(missionPort, missionPortNum, missionBaudrate):
+def missionPortOpening(missionPort, missionPortNum, missionBaudrate, missionLTE):
     global lteQ
     if (missionPort == None):
         try:
             missionPort = serial.Serial(missionPortNum, missionBaudrate, timeout = 2)
             print ('missionPort open. ' + missionPortNum + ' Data rate: ' + missionBaudrate)
             mission_thread = threading.Thread(
-                target=missionPortData, args=(missionPort,)
+                target=missionPortData, args=(missionPort, missionLTE)
             )
             mission_thread.start()
 
@@ -104,7 +104,7 @@ def send_data_to_msw (data_topic, obj_data):
     lib_mqtt_client.publish(data_topic, obj_data)
 
 
-def missionPortData(missionPort):
+def missionPortData(missionPort, missionLTE):
     global lteQ
     lteQ = dict()
     while True:
@@ -217,6 +217,7 @@ if __name__ == '__main__':
 
     lib['serialPortNum'] = argv[1]
     lib['serialBaudrate'] = argv[2]
+    lib['lteType'] = argv[3]
 
     broker_ip = 'localhost'
     port = 1883
@@ -226,4 +227,5 @@ if __name__ == '__main__':
     missionPort = None
     missionPortNum = lib["serialPortNum"]
     missionBaudrate = lib["serialBaudrate"]
-    missionPortOpening(missionPort, missionPortNum, missionBaudrate)
+    missionLTE = lib['lteType']
+    missionPortOpening(missionPort, missionPortNum, missionBaudrate, missionLTE)
