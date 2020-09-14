@@ -154,6 +154,75 @@ def missionPortData(missionPort, missionLTE):
                     lteQ['band'] = int(arrQValue_1_data[1])
                 elif (arrQValue_1_data[0] == 'BW'):
                     lteQ['bandwidth'] = int(arrQValue_1_data[1][:-3])
+                elif (arrQValue_1_data[0] == 'PLMN'):
+                    lteQ['plmn'] = int(arrQValue_1_data[1])
+                    print(lteQ['plmn'])
+                elif (arrQValue_1_data[0] == 'TAC'):
+                    lteQ['tac'] = int(arrQValue_1_data[1])
+                    print(lteQ['tac'])
+                elif (arrQValue_1_data[0] == 'Cell(PCI)'):
+                    lteQ['cell_id'] = arrQValue_1_data[1]
+                    print(lteQ['cell_id'])
+                elif (arrQValue_1_data[0] == 'ESM CAUSE'):
+                    lteQ['esm_cause'] = int(arrQValue_1_data[1])
+                    print(lteQ['esm_cause'])
+                elif (arrQValue_1_data[0] == 'DRX'):
+                    lteQ['drx'] = int(arrQValue_1_data[1][:-2])
+                    print(lteQ['drx'])
+                elif (arrQValue_1_data[0] == 'RSRP'):
+                    lteQ['rsrp'] = float(arrQValue_1_data[1])
+                    print(lteQ['rsrp'])
+                elif (arrQValue_1_data[0] == 'RSRQ'):
+                    lteQ['rsrq'] = float(arrQValue_1_data[1])
+                    print(lteQ['rsrq'])
+                elif (arrQValue_1_data[0] == 'RSSI'):
+                    lteQ['rssi'] = float(arrQValue_1_data[1])
+                    print(lteQ['rssi'])
+                elif (arrQValue_1_data[0] == 'L2W'):
+                    lteQ['l2w'] = arrQValue_1_data[1]
+                    print(lteQ['l2w'])
+                elif (arrQValue_1_data[0] == 'RI'):
+                    lteQ['ri'] = int(arrQValue_1_data[1])
+                    print(lteQ['ri'])
+                elif (arrQValue_1_data[0] == 'CQI'):
+                    lteQ['cqi'] = int(arrQValue_1_data[1])
+                    print(lteQ['cqi'])
+                elif (arrQValue_1_data[0] == 'STATUS'):
+                    lteQ['status'] = arrQValue_1_data[1]
+                    print(lteQ['status'])
+                elif (arrQValue_1_data[0] == 'SUB STATUS'):
+                    lteQ['sub_status'] = arrQValue_1_data[1]
+                    print(lteQ['sub_status'])
+                elif (arrQValue_1_data[0] == 'RRC'):
+                    lteQ['rrc'] = arrQValue_1_data[1]
+                    print(lteQ['rrc'])
+                elif (arrQValue_1_data[0] == 'SVC'):
+                    lteQ['svc'] = arrQValue_1_data[1]
+                    print(lteQ['svc'])
+                elif (arrQValue_1_data[0] == 'SINR'):
+                    lteQ['sinr'] = float(arrQValue_1_data[1])
+                    print(lteQ['sinr'])
+                elif (arrQValue_1_data[0] == 'Tx Pwr'):
+                    lteQ['tx_pwr'] = int(arrQValue_1_data[1])
+                    print(lteQ['tx_pwr'])
+                elif (arrQValue_1_data[0] == 'TMSI'):
+                    lteQ['tmsi'] = arrQValue_1_data[1]
+                    print(lteQ['tmsi'])
+                elif (arrQValue_1_data[0] == 'IP'):
+                    lteQ['ip'] = arrQValue_1_data[1]
+                    print(lteQ['ip'])
+                elif (arrQValue_1_data[0] == 'AVG RSRP'):
+                    lteQ['avg_rsrp'] = float(arrQValue_1_data[1])
+                    print(lteQ['avg_rsrp'])
+                elif (arrQValue_1_data[0] == 'ANTBAR'):
+                    lteQ['antbar'] = int(arrQValue_1_data[1])
+                    print(lteQ['antbar'])
+                elif (arrQValue_1_data[0] == 'IMSI'):
+                    lteQ['imsi'] = int(arrQValue_1_data[1])
+                    print(lteQ['imsi'])
+                elif (arrQValue_1_data[0] == 'MSISDN'):
+                    lteQ['missdn'] = int(arrQValue_1_data[1])
+                    print(lteQ['missdn'])
 
 
 
