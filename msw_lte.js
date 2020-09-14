@@ -119,6 +119,7 @@ function runLib(obj_lib) {
         }
         
         var Libarr = scripts_arr.slice(1);
+        console.log("LTE Type: ", my_lte_type);
         Libarr.push(my_lte_type);
 
         // // test
