@@ -1,7 +1,7 @@
 {
     "name": "lib_sparrow_lte",
     "target": "armv6",
-    "lte": "LG",
+    "lte": "SKT",
     "description": "[name] [portnum] [baudrate]",
     "scripts": "./lib_sparrow_lte /dev/ttyUSB1 115200",
     "data": [
