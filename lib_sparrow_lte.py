@@ -144,7 +144,8 @@ def missionPortData(missionPort, missionLTE):
         elif (missionLTE == 'SKT'):
             arrQValue_0 = arrLTEQ[0].split(':')
             if (arrQValue_0[0] == '@DBG'):
-                    lteQ['EARFCN'] = arrQValue_0[2].split(',')[0] # DL/UL
+                    lteQ['earfcn_dl'] = arrQValue_0[2].split(',')[0].split('/')[0]
+                    lteQ['earfcn_ul'] = arrQValue_0[2].split(',')[0].split('/')[1]
                     lteQ['rf_state'] = arrQValue_0[3]
             arrQValue_1 = arrLTEQ[1].split(',')
             for idx in range(len(arrQValue_1)):
