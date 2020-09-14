@@ -142,17 +142,18 @@ def missionPortData(missionPort, missionLTE):
                     lteQ['sinr'] = float(arrQValue[1][:-2])
 
         elif (missionLTE == 'SKT'):
-            # for idx in range(len(arrLTEQ)):
             arrQValue_0 = arrLTEQ[0].split(':')
             if (arrQValue_0[0] == '@DBG'):
                     lteQ['EARFCN'] = arrQValue_0[2].split(',')[0] # DL/UL
                     lteQ['rf_state'] = arrQValue_0[3]
-            print('arr0: ', lteQ)
+
             arrQValue_1 = arrLTEQ[1].split(',')
             for idx in range(len(arrQValue_1)):
-                print('arr1:\n', arrQValue_1)
-                # elif (arrQValue_0[0] == 'BAND'):
-                #     lteQ['band'] = int(arrQValue[1])
+                arrQValue_1_data = arrQValue_1[idx].split(':')
+                if (arrQValue_1_data[0] == 'BAND'):
+                    lteQ['band'] = int(arrQValue_1_data[1])
+                elif (arrQValue_1_data[0] == 'BW'):
+                    lteQ['bandwidth'] = int(arrQValue_1_data[1][:-3])
 
 
 
